@@ -1,0 +1,9 @@
+vscode
+
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.gz
