@@ -187,7 +187,7 @@
 
 \begin{frame}{数字贸易的需求与偏好}
     \begin{itemize}
-        \item 使用垄断竞争的Dixit-Stiglitz模型和不变替代弹性(CES)效用函数可以表示\underline{数字产品进口国 $j$ 的代表性消费者的偏好}% 为：
+        \item 使用垄断竞争的Dixit-Stiglitz模型和不变替代弹性(CES)效用函数可以表示\ \underline{数字产品进口国 $j$ 的代表性消费者的偏好} 为：
         \begin{gather*}
             U_j = (\sum_{i=1}^{R} \sum_{v=1}^{n_i} x_{vij}^{\frac{\sigma - 1} {\sigma}})^{\frac{\sigma -1}{\sigma}} \tag{1}
         \end{gather*}
@@ -203,7 +203,7 @@
 
 \begin{frame}{数字贸易的需求与偏好}
     \begin{itemize}
-        \item \underline{数字产品进口国 $j$ 的代表性消费者的预算约束}% 为：
+        \item \underline{数字产品进口国 $j$ 的代表性消费者的预算约束} 为：
         \begin{gather*}
             P_jY_j = \sum_{i=1}^{R} \sum_{v=1}^{n_i} P_{vij}X_{vij} \tag{2}
         \end{gather*}
@@ -217,7 +217,7 @@
 
 \begin{frame}{数字贸易的需求与偏好}
     \begin{itemize}
-        \item 通过 (1) 和 (2) 两式，可得 \underline{$j$ 国数字产品价格指数和数字产品的需求函数}% 为：
+        \item 通过 (1) 和 (2) 两式，可得\ \underline{$j$ 国数字产品价格指数} 和\ \underline{数字产品的需求函数} 为：
         \begin{align*}
             P_j &= (\sum_{i=1}^{R} \sum_{v=1}^{n_i} P_{vij}^{1 - \sigma})^{\frac{\sigma - 1}{\sigma}} \tag{3} \\
             X_{vij} &= (\frac{P_{vij}}{P_j})^{-\sigma}Y_j,\quad \forall v, i \tag{4}
@@ -227,21 +227,32 @@
 
 \begin{frame}{数字贸易的供给与成本}
     \begin{itemize}
-        \item $i$ 国 $v$ 企业的成本函数和利润函数
-        \begin{align}
+        \item 数字产品的典型特点
+        \begin{itemize}
+            \item 固定成本较高
+            \item 可变成本较低
+        \end{itemize}
+        \item 引入规制融合的异质性
+        \begin{itemize}
+            \item 采用出口国 $i$ 的每家企业进入到进口国 $j$ 的固定成本 $F_ij$ 表示
+        \end{itemize}
+        \item 给定 $i$ 国工资水平 $w_i$ ，劳动是企业 $v$ 位移的生产要素，劳动数量 $l_{vij}$ 取决于企业面临的固定成本 $F_{ij}$ 和可变劳动成本 $\beta X_{vij}$ ，$\beta$ 反映生产的可变成本（即每单位数字产品的生产需要 $\beta$ 单位的劳动）
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{数字贸易的供给与成本}
+    \begin{itemize}
+        \item \underline{$i$ 国 $v$ 企业的成本函数} 和\ \underline{利润函数} 为：
+        \begin{align*}
             C_{vij} &= w_i l_{vij} = w_i(\beta X_{vij} + F_{ij}) \tag{5} \\
             \pi_{vi} &= \sum_{j=1}^{R} \pi_{vij} = \sum_{j=1}^{R} [P_{cij X_{vij} - w_i(\beta X_{vij} + F_{ij})}] \tag{6}
-        \end{align}
+        \end{align*}
         \begin{itemize}
-            \item $C_{vij}$ 代表 $i$ 国企业 $v$ 将产品出口到 $j$ 国时面临的成本
-            \item $F_{ij}$ 表示出口国 $i$ 的每家企业进入到进口国 $j$ 的固定成本
-            \item $w_i$ $i$ 国工资水平
-            \item $\beta$ 反映生产的可变成本(即每单位数字产品的生产需要 $\beta$ 单位的劳动)
-            \item $w_i \beta X_{vij}$ 可变劳动成本
-            \begin{itemize} 
-                \item $\beta X_{vij}$ 表示 $i$ 国企业 $v$ 生产 $X_{vij}$ 件数字产品时需要的劳动量
+            \item $C_{vij}$ 代表 $i$ 国企业 $v$ 将产品出口到 $j$ 国时面临的成本，包括：
+            \begin{itemize}
+                \item 可变劳动成本 $w_i \beta X_{vij}$ ({$\beta X_{vij}$ 表示 $i$ 国企业 $v$ 生产 $X_{vij}$ 件数字产品时需要的劳动量})
+                \item 固定成本 $w_i F_{ij}$，受规制融合影响
             \end{itemize}
-            \item $w_i F_{ij}$ 固定成本，受规制融合影响
             \item $\pi_{vi}$ 代表 $i$ 国企业 $v$ 获取的利润
         \end{itemize}
     \end{itemize}
@@ -249,7 +260,10 @@
 
 \begin{frame}{数字贸易的供给与成本}
     \begin{itemize}
-        \item 在 CES 效用函数下的垄断竞争市场，利润最大化时产品的销售价格等于边际成本乘以固定价格加成
+        \item 生产可变成本部分不随产量变化
+        \item 不同市场的数字产品需求相互独立
+        \item 企业分别对各市场进行定价以使每个市场利润最大化
+        \item 在 CES 效用函数下的垄断竞争市场，\ \underline{利润最大化时} \underline{产品的销售价格} 等于边际成本乘以固定价格加成，此时需求弹性等于替代弹性 $\sigma$
         \begin{align}
             P_{vij}^{*} = \frac{\sigma}{\sigma - 1} \beta w_i \tag{7}
         \end{align}
@@ -258,20 +272,26 @@
 
 \begin{frame}{数字贸易的供给与成本}
     \begin{itemize}
-        \item 产量
+        \item 模型均衡时，各国出口到其他国家或地区数字产品种类数由零利润条件决定
+        \item 在(6)式中加入零利润条件并结合(7)式，可得\ \underline{产量} 为：
         \begin{align}
             X_{vij}^{*} = \frac{(\sigma - 1) F_{ij}}{\beta} \tag{8}
         \end{align}
+        \begin{itemize}
+            \item $i$ 国企业 $v$ 和 $j$ 国的贸易量由固定成本和替代弹性确定
+            \item 在零利润条件下，固定成本下降会减少每家企业的产出
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}{规制融合对数字贸易的影响}
     \begin{itemize}
         \item 当达到市场均衡时，每个数字贸易市场的需求等于供给
-        \item $X_{ij}=n_i X_{vij};\ P_{vij}=P_{ij};\ P_{j}=(\sum_{i=1}^R n_iP_{ij}^{1-\sigma}){\frac{1}{1-\sigma}}$
+        \item 联立(4)和(8)，且 $X_{ij}=n_i X_{vij};\ P_{vij}=P_{ij};\ P_{j}=(\sum_{i=1}^R n_iP_{ij}^{1-\sigma}){\frac{1}{1-\sigma}}$ ，可得：
         \begin{align}
             \frac{(\sigma - 1)F_{ij}}{\beta} = \frac{(\sum_{i=1}^R n_iP_{ij}^{1-\sigma}){\frac{1}{1-\sigma}}}{P_{ij}^{\sigma}} Y_j \tag{9}
         \end{align}
+        \item 将(9)式得到的 $i$ 国出口企业数量 $n_i$ 和 $i$ 与 $j$ 国的数字贸易量 $X_{ij}$ 分别对固定成本 $F_{ij}$ 求微分，可分析规制融合对数字贸易的影响
     \end{itemize}
 \end{frame}
 
@@ -285,6 +305,11 @@
         \begin{itemize}
             \item $\varpi_{ij}$ 代表 $i$ 在 $j$ 国价格指数中所占份额
         \end{itemize}
+        \item 经济实现市场均衡时 $\varpi_{ij} \leqslant 1$ 恒成立，则 $\frac{{\mathrm{d}n_i}}{{\mathrm{d}F_{ij}}} < 0$ 恒成立，则
+        \begin{itemize}
+            \item 固定成本上升会减少 $i$ 国的出口企业数量
+            \item 固定成本下降虽然使每家企业的产出减少，但会使企业数量增多
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
@@ -294,6 +319,10 @@
         \begin{gather*}
             \frac{\mathrm{d}X_{ij}}{\mathrm{d}F_{ij}} = \frac{X_{ij}n_i}{F_{ij}}\left(1+\frac{1-\sigma}{\sigma \varpi_{ij}}\right)<0 \quad \text{如果} \quad \sigma(1-\varpi_{ij})>1 \tag{11}
         \end{gather*}
+        \item Kox and Lejour(2005) 发现，对许多国家，一个国家在另一个国家价格指数所占份额 $\varpi_{ij}$ 一般小于 10\%，如果替代弹性大于 $\sigma$ 大于 $1.1$ ，则(11)的约束条件满足，即 $F_{ij}$ 和 $X_{ij}$ 存在负向关系
+        \begin{itemize}
+            \item 当数字贸易的产品替代弹性大于 $1.1$ 时，规制融合会降低数字贸易的固定成本，促进国家间的数字贸易
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
