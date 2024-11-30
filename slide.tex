@@ -5,6 +5,8 @@
 % other packages
 \usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra,threeparttable,geometry,adjustbox,makecell}
 \usepackage{graphicx,pstricks,listings,stackengine}
+\usepackage{ulem}
+\usepackage[skins]{tcolorbox}
 
 \author{刘斌 \inst{1} 甄洋 \inst{1} 李小帆 \inst{2}}
 \title{
@@ -24,6 +26,7 @@
 \definecolor{deepred}{rgb}{0.6,0,0}
 \definecolor{deepgreen}{rgb}{0,0.5,0}
 \definecolor{halfgray}{gray}{0.55}
+\definecolor{lightyellow}{RGB}{255,255,204}
 
 \lstset{
     basicstyle=\ttfamily\small,
@@ -527,105 +530,159 @@
 \section{实证分析}
 \subsection{基准回归}
 \begin{frame}{基准回归分析}
-    \scriptsize
-    \centering
-    \resizebox{\textheight}{!}{ 
-        \begin{threeparttable}
-        \caption{基准回归结果}
-        \begin{tabular}{ccccccc}
-        \toprule
-         & \multicolumn{3}{c}{OLS} & \multicolumn{3}{c}{PPML} \\
-        % \cmidrule(lr){2-4} \cmidrule(lr){5-7}
-         & (1) & (2) & (3) & (4) & (5) & (6) \\
-        \midrule
-        $Rule_{ij}$ & 0.0018*** & 0.0024*** & 0.0026*** & 0.2682*** & 0.3544*** & 0.3877*** \\
-         & (0.0002) & (0.0003) & (0.0003) & (0.0294) & (0.0441) & (0.0455) \\
-        $GDP_{it}$ & & -0.0004*** & -0.0004*** & & -0.0539*** & -0.0579*** \\
-         & & (0.0001) & (0.0001) & & (0.0119) & (0.0119) \\
-        $GDP_{jt}$ & & -0.0004*** & -0.0004*** & & -0.0514*** & -0.0660*** \\
-         & & (0.0001) & (0.0001) & & (0.0122) & (0.0117) \\
-        $Dist_{ij}$ & & 0.0007*** & 0.0008*** & & 0.0992*** & 0.1096*** \\
-         & & (0.0001) & (0.0001) & & (0.0190) & (0.0200) \\
-        $Contig_{ij}$ & & -0.0026*** & -0.0027*** & & -0.5080*** & -0.5164*** \\
-         & & (0.0002) & (0.0002) & & (0.0450) & (0.0463) \\
-        $Comlang_{ij}$ & & 0.0059*** & 0.0064*** & & 0.8050*** & 0.8535*** \\
-         & & (0.0008) & (0.0008) & & (0.0766) & (0.0767) \\
-         $Col_{ij}$ & & -0.0020*** & -0.0017*** & & -0.4007*** & -0.3662*** \\
-         & & (0.0003) & (0.0003) & & (0.0615) & (0.0632) \\
-        $DoC_{ij}$ & & & -0.0002*** & & & -0.0309*** \\
-         & & & (0.0001) & & & (0.0107) \\
-        $Internet_{it}$ & & & -0.0002 & & & -0.0390 \\
-         & & & (0.0002) & & & (0.0302) \\
-        $Internet_{jt}$ & & & -0.0003* & & & -0.0503* \\
-         & & & (0.0002) & & & (0.0291) \\
-        常数项 & 0.0064*** & 0.0182*** & 0.0210*** & -5.1082*** & -3.3779*** & -2.8428*** \\
-         & (0.0005) & (0.0028) & (0.0027) & (0.0768) & (0.4228) & (0.4189) \\
-        观测值 & 35 100 & 35 100 & 33 100 & 35 100 & 35 100 & 33 003 \\
-        $R^2$ & 0.0153 & 0.0227 & 0.0238 & 0.0111 & 0.0163 & 0.0164 \\
-        \bottomrule
-        \end{tabular}
-        \begin{tablenotes}
-        \item \textit{说明：} 括号内的值为稳健标准误，* 、＊＊、＊＊＊分别表示估计系数在 10\% 、5\% 和 1\% 的水平上显著，如未做特殊说明，则所有回归都控制了本国、贸易伙伴国、行业以及年份固定效应，后表同。
-        \end{tablenotes}
-        \end{threeparttable}
-    }
+    \vspace*{-0.8em}
+    \begin{columns}[T]
+        \begin{column}{0.8\textwidth}
+            \scriptsize
+            \centering
+            \resizebox{\textheight}{!}{ 
+                \begin{threeparttable}
+                    \caption{基准回归结果}
+                    \begin{tabular}{ccccccc}
+                        \toprule
+                        & \multicolumn{3}{c}{OLS} & \multicolumn{3}{c}{PPML} \\
+                        % \cmidrule(lr){2-4} \cmidrule(lr){5-7}
+                        & (1) & (2) & (3) & (4) & (5) & (6) \\
+                        \midrule
+                        $Rule_{ij}$ & 0.0018*** & 0.0024*** & 0.0026*** & 0.2682*** & 0.3544*** & 0.3877*** \\
+                        & (0.0002) & (0.0003) & (0.0003) & (0.0294) & (0.0441) & (0.0455) \\
+                        $GDP_{it}$ & & -0.0004*** & -0.0004*** & & -0.0539*** & -0.0579*** \\
+                        & & (0.0001) & (0.0001) & & (0.0119) & (0.0119) \\
+                        $GDP_{jt}$ & & -0.0004*** & -0.0004*** & & -0.0514*** & -0.0660*** \\
+                        & & (0.0001) & (0.0001) & & (0.0122) & (0.0117) \\
+                        $Dist_{ij}$ & & 0.0007*** & 0.0008*** & & 0.0992*** & 0.1096*** \\
+                        & & (0.0001) & (0.0001) & & (0.0190) & (0.0200) \\
+                        $Contig_{ij}$ & & -0.0026*** & -0.0027*** & & -0.5080*** & -0.5164*** \\
+                        & & (0.0002) & (0.0002) & & (0.0450) & (0.0463) \\
+                        $Comlang_{ij}$ & & 0.0059*** & 0.0064*** & & 0.8050*** & 0.8535*** \\
+                        & & (0.0008) & (0.0008) & & (0.0766) & (0.0767) \\
+                        $Col_{ij}$ & & -0.0020*** & -0.0017*** & & -0.4007*** & -0.3662*** \\
+                        & & (0.0003) & (0.0003) & & (0.0615) & (0.0632) \\
+                        $DoC_{ij}$ & & & -0.0002*** & & & -0.0309*** \\
+                        & & & (0.0001) & & & (0.0107) \\
+                        $Internet_{it}$ & & & -0.0002 & & & -0.0390 \\
+                        & & & (0.0002) & & & (0.0302) \\
+                        $Internet_{jt}$ & & & -0.0003* & & & -0.0503* \\
+                        & & & (0.0002) & & & (0.0291) \\
+                        常数项 & 0.0064*** & 0.0182*** & 0.0210*** & -5.1082*** & -3.3779*** & -2.8428*** \\
+                        & (0.0005) & (0.0028) & (0.0027) & (0.0768) & (0.4228) & (0.4189) \\
+                        观测值 & 35 100 & 35 100 & 33 100 & 35 100 & 35 100 & 33 003 \\
+                        $R^2$ & 0.0153 & 0.0227 & 0.0238 & 0.0111 & 0.0163 & 0.0164 \\
+                        \bottomrule
+                    \end{tabular}
+                    \begin{tablenotes}
+                        \item \textit{说明：} 括号内的值为稳健标准误，* 、＊＊、＊＊＊分别表示估计系数在 10\% 、5\% 和 1\% 的水平上显著，如未做特殊说明，则所有回归都控制了本国、贸易伙伴国、行业以及年份固定效应，后表同。
+                    \end{tablenotes}
+                \end{threeparttable}
+            }
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \vspace*{3em}
+            \footnotesize
+            \begin{itemize}
+                \item \uline{
+                    普通最小二乘回 \\
+                    归(OLS)
+                    } \\
+                \begin{scriptsize}
+                    最基本的回归方法，在经验分析中经常被采用 \\
+                    第（1）-（3）列
+                \end{scriptsize}
+                \item \uline{
+                    泊松伪极大似然 \\
+                    估计(PPML)
+                    } \\
+                \begin{scriptsize}
+                    适用于因变量存在过多零值的情形 \\
+                    第（4）-（6）列
+                \end{scriptsize}
+            \end{itemize}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}{基准回归分析}
     \begin{itemize}
-        \item 第（1）-（3）列进行普通最小二乘回归（OLS）；第（4）-（6）列使用泊松伪极大似然估计（PPML）进行回归
+        \item 核心解释变量
+        \begin{itemize}
+            \item 所有回归核心解释变量规制融合的系数均显著为正，\uline{规制融合确实促进了数字贸易}
+        \end{itemize}
+        \item 控制变量
+        \begin{itemize}
+            \item 本国和贸易伙伴国国内生产总值系数显著为负，双边地理距离系数显著为正，是否接壤和是否具有殖民关系的系数显著为负，与传统引力模型结论相反 \\
+            \begin{scriptsize}
+                选取的因变量是数字贸易额占总贸易额的比重，而不是数字贸易额的绝对值，上述控制变量会对传统贸易产生更大影响
+            \end{scriptsize}
+            \item 是否具有共同语言变量系数显著为正，\uline{共同语言降低了贸易的沟通成本，显著促进了数字贸易}
+            \item 双边文化距离显著为负，\uline{文化距离是国家间数字贸易开展的重要障碍}
+            \item 本国和贸易伙伴国互联网水平对数字贸易的影响并不稳定 \\
+            \begin{scriptsize}
+                本国和贸易伙伴国互联网水平对数字贸易和传统贸易会产生同等影响效果
+            \end{scriptsize}
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}{稳健性检验}
     \vspace{-0.5cm}
-    \tiny
-    \setlength{\tabcolsep}{3pt}
-    \centering
-    \begin{threeparttable}
-    \captionsetup{font=tiny}
-    \caption{稳健性检验-重新度量数字贸易指标}
-    \renewcommand{\arraystretch}{0.8} % 减小行距
-    \begin{tabular}{lcc}
-    \toprule
-    & \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(1)} \\
-    \midrule
-    $Rule_{ij}$ & 0.5453*** & 0.5142*** \\
-    & (0.0600) & (0.0606) \\
-    $GDP_i$ & 0.8073*** & 0.8047*** \\
-    & (0.0176) & (0.0190) \\
-    $GDP_j$ & 0.8039*** & 0.7995*** \\
-    & (0.0183) & (0.0197) \\
-    $Dist_{ij}$ & -0.6122*** & -0.6266*** \\
-    & (0.0229) & (0.0217) \\
-    $Contig_{ij}$ & -0.4286*** & -0.4269*** \\
-    & (0.0623) & (0.0657) \\
-    $Comlang_{ij}$ & 1.1633*** & 1.1286*** \\
-    & (0.0788) & (0.0885) \\
-    $Col_{ij}$ & -0.1264 & -0.1190 \\
-    & (0.0925) & (0.0932) \\
-    $DoC_{ij}$ & & -0.0313** \\
-    & & (0.0159) \\
-    $Internet_i$ & & -0.0062 \\
-    & & (0.0645) \\
-    $Internet_j$ & & 0.0147 \\
-    & & (0.0607) \\
-    常数项 & -36.5401*** & -36.1791*** \\
-    & (0.7777) & (0.8190) \\
-    观测值 & 35100 & 33003 \\
-    $R^2$ & 0.6220 & 0.6155 \\
-    \bottomrule
-    \end{tabular}
-    \end{threeparttable}
+    \begin{columns}[T]
+        \begin{column}{0.6\textwidth}
+            \tiny
+            \setlength{\tabcolsep}{3pt}
+            \centering
+            \begin{threeparttable}
+                \captionsetup{font=tiny}
+                \caption{稳健性检验-重新度量数字贸易指标}
+                \renewcommand{\arraystretch}{0.8} % 减小行距
+                \begin{tabular}{ccc}
+                    \toprule
+                    & \multicolumn{1}{c}{(1)} & \multicolumn{1}{c}{(1)} \\
+                    \midrule
+                    $Rule_{ij}$ & 0.5453*** & 0.5142*** \\
+                    & (0.0600) & (0.0606) \\
+                    $GDP_i$ & 0.8073*** & 0.8047*** \\
+                    & (0.0176) & (0.0190) \\
+                    $GDP_j$ & 0.8039*** & 0.7995*** \\
+                    & (0.0183) & (0.0197) \\
+                    $Dist_{ij}$ & -0.6122*** & -0.6266*** \\
+                    & (0.0229) & (0.0217) \\
+                    $Contig_{ij}$ & -0.4286*** & -0.4269*** \\
+                    & (0.0623) & (0.0657) \\
+                    $Comlang_{ij}$ & 1.1633*** & 1.1286*** \\
+                    & (0.0788) & (0.0885) \\
+                    $Col_{ij}$ & -0.1264 & -0.1190 \\
+                    & (0.0925) & (0.0932) \\
+                    $DoC_{ij}$ & & -0.0313** \\
+                    & & (0.0159) \\
+                    $Internet_i$ & & -0.0062 \\
+                    & & (0.0645) \\
+                    $Internet_j$ & & 0.0147 \\
+                    & & (0.0607) \\
+                    常数项 & -36.5401*** & -36.1791*** \\
+                    & (0.7777) & (0.8190) \\
+                    观测值 & 35100 & 33003 \\
+                    $R^2$ & 0.6220 & 0.6155 \\
+                    \bottomrule
+                \end{tabular}
+            \end{threeparttable}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \vspace*{4em}
+            \begin{itemize}
+                \item 使用数字贸易额作为被解释变量
+                \item 规制融合的系数依然显著为正，规制融合对数字贸易具有稳健地促进作用
+            \end{itemize}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}{稳健性检验}
-    \footnotesize \textbf{说明：} 不同国家间即使达成了同一数字贸易规则，规则内容及其深度也存在一定差异，也就是说规制融合具有异质性，单纯运用虚拟变量方法度量规制融合借粮结果可能并不稳健。故在稳健性检验中选取数字贸易条款单词数占总文本单词数的比重($RWords_{ijt}$)反映规制融合的情况
+    \vspace*{-0.8em}
     \begin{table}
         \centering
         \caption{更换规制融合指标}
         \label{tab:robustness_check}
-        \begin{tabular}{lccc}
+        \begin{tabular}{cccc}
             \toprule
             & (1) & (2) & (3) \\
             \midrule
@@ -637,11 +694,22 @@
             \bottomrule
         \end{tabular}
     \end{table}
+    \small
+    \begin{itemize}
+        \item 使用数字贸易条款单词数占总文本单词数的比重($RWords_{ijt}$)代替 $Rule_{ijt}$ 作为核心自变量 \\
+        \begin{scriptsize} 
+            不同国家间即使达成了同一数字贸易规则，规则内容及其深度也存在一定差异，也就是说规制融合具有异质性，单纯运用虚拟变量方法度量规制融合借粮结果可能并不稳健
+        \end{scriptsize}
+        \item 核心自变量系数显著为正，规制融合对数字贸易有显著促进作用
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{内生性问题的讨论与处理}
     \begin{itemize}
-        \item DID 模型
+        \item 多期倍差法(DID)模型 \\
+        \begin{scriptsize}
+            控制处理组在虚拟情形下的走势，进而得到规制融合真实的促进效果，从而较好避免政策作为解释变量导致的内生性问题
+        \end{scriptsize}
         \begin{gather*}
             RDT_{zt}=\phi_0+\phi_1 DID_{zt}+\phi Controls+v_z+v_t+\epsilon_{zt} \tag{13}
         \end{gather*}
@@ -651,51 +719,80 @@
                 \item 若个体 $z$ 在 $t$ 期接受处理代表进入处理期，此后时期均取值为 $1$，否则为 $0$
                 \item 等价于处理组虚拟变量 $treat_z$ 和处理期虚拟变量 $post_t$ 的交乘项
             \end{itemize}
-            \item $v_z$ 表示个体固定效应
-            \item $v_t$ 表示年份固定效应
+            \item $v_z, v_t$ 分别表示个体固定效应和年份固定效应
             \item $\epsilon_{zt}$ 为随机干扰项
         \end{itemize}
     \end{itemize}    
 \end{frame}
 
 \begin{frame}{内生性问题的讨论与处理}
+    \vspace*{-1em}
     \begin{table}
         \centering
         \caption{多期倍差法(DID)的回归结果}
         \label{tab:DID_results}
-        \begin{tabular}{lccc}
+        \begin{tabular}{cccc}
             \toprule
             & (1) & (2) & (3) \\
             \midrule
-            DID$_{zt}$ & 0.0040*** & 0.0049*** & 0.0053*** \\
-                       & (0.0003)  & (0.0004)  & (0.0004)  \\
-            控制变量   & 控制      & 控制      & 控制      \\
-            个体固定效应 & 控制      & 控制      & 控制      \\
-            年份固定效应 & 控制      & 控制      & 控制      \\
-            观测值     & 35,100    & 35,100    & 33,003    \\
-            R$^{2}$    & 0.0060    & 0.0135    & 0.0142    \\
+            $DID_{zt}$ & 0.0040*** & 0.0049*** & 0.0053*** \\
+            & (0.0003) & (0.0004) & (0.0004) \\
+            控制变量 & 控制 & 控制 & 控制 \\
+            个体固定效应 & 控制 & 控制 & 控制 \\
+            年份固定效应 & 控制 & 控制 & 控制 \\
+            观测值 & 35,100 & 35,100 & 33,003 \\
+            $R^{2}$ & 0.0060 & 0.0135 & 0.0142 \\
             \bottomrule
         \end{tabular}
     \end{table}
+    \begin{itemize}
+        \item 规制融合系数显著为正，与基准回归结果保持一致
+        \item 交互项系数度量了个体规制融合后超越虚拟情形下的表现，说明规制融合促进了数字贸易的增长
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{内生性问题的讨论与处理}
+    \begin{itemize}
+        \item 两阶段最小二乘(2SLS)方法
+        \begin{itemize}
+            \item DID 方法能缓解样本选择偏差产生的内生性问题，\uline{但不能 \\ 解决模型中的反向因果问题}
+        \end{itemize}
+        \item 工具变量(IV)方法
+        \begin{enumerate}
+            \item 两国实现规制融合的概率值
+            \begin{itemize}
+                \item 根据韩剑等(2019)的研究，设定估计模型：
+                \begin{gather*}
+                    P(Rule_{ij} = 1 \vert Z)=\alpha_0 \varPhi+\alpha Z
+                \end{gather*}
+                \item $\varPhi$ 为累计分布函数
+                \item $Z$ 为控制变量，包括：双边地理距离、两国的GDP、贸易伙伴之间的类型以及两国的互联网水平
+                \item 对模型进行回归，以得到的概率值作为规制融合的工具变量
+            \end{itemize}
+            \item 两国到赤道距离差取自然对数后的倒数
+            \begin{itemize}
+                \item 各国到赤道的距离运用的是各国首都到赤道的距离
+            \end{itemize}
+        \end{enumerate}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{内生性问题的讨论与处理}
+    \vspace*{-1em}
     \scriptsize
     \centering
     \resizebox{\textwidth}{!}{
         \begin{threeparttable}
             \caption{两阶段最小二乘法的估计结果}
             \label{tab:two_stage_least_squares}
-            \begin{tabular}{lcccccc}
+            \begin{tabular}{ccccccc}
                 \toprule
-                % & \multicolumn{1}{c}{工具变量是 “两国实现规制融合的概率值”} & \multicolumn{1}{c}{工具变量是 “两国实现规制融合的概率值 $\times$ 年份”} & \multicolumn{1}{c}{工具变量是 “两国到赤道距离差取自然对数后的倒数”} & \multicolumn{1}{c}{工具变量是 “两国到赤道距离差取自然对数后的倒数 $\times$ 年份”} & \multicolumn{1}{c}{同时引入(1)和(3)两个工具变量} & \multicolumn{1}{c}{同时引入(2)和(4)两个工具变量} \\
                 & \makecell[c]{工具变量是 \\ “两国实现 \\ 规制融合的 \\ 概率值”} 
                 & \makecell[c]{工具变量是 \\ “两国实现规 \\ 制融合的概 \\ 率值 $\times$ 年份”} 
                 & \makecell[c]{工具变量是 \\ “两国到赤道 \\ 距离差取 \\ 自然对数 \\ 后的倒数”} 
                 & \makecell[c]{工具变量是 \\ “两国到赤道 \\ 距离差取自 \\ 然对数后的 \\ 倒数 $\times$ 年份”} 
                 & \makecell[c]{同时引入 \\ (1) 和 (3) \\ 两个工具 \\ 变量} 
                 & \makecell[c]{同时引入 \\ (2) 和 (4) \\ 两个工具 \\ 变量} \\
-                % \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
                 & (1) & (2) & (3) & (4) & (5) & (6) \\
                 \midrule
                 $Rule_{ijt}$ & 0.0102*** & 0.0102*** & 0.0087*** & 0.0087*** & 0.0102*** & 0.0102*** \\
@@ -717,6 +814,32 @@
         \end{threeparttable}
     }
 \end{frame}
+
+\begin{frame}{内生性问题的讨论与处理}
+    \begin{small}
+        \begin{itemize}
+            \item \uline{两国实现规制融合的概率值}
+            \begin{enumerate}
+                \item 双边地理距离等是不同国家实现规制融合考量的重要因素，与规制融合高度相关，满足相关性条件
+                \item 仅是一个概率值，不会直接影响数字贸易，满足外生性条件
+            \end{enumerate}
+            \item \uline{两国到赤道距离差取自然对数后的倒数}
+            \begin{enumerate}
+                \item 两国到赤道的距离越接近，双边政治关系越融洽，越容易达成国际贸易协定，与规制融合高度相关，满足相关性条件
+                \item 各国到赤道距离的差距仅反映政治关系和制度差异，并不会直接影响样本期内经济层面的数字贸易，满足外生性条件
+            \end{enumerate}
+        \end{itemize}
+    \end{small}
+    \begin{tcolorbox}[colback=lightyellow,colframe=deepblue,coltext=black]
+        \scriptsize
+        \begin{itemize}
+            \item 规制融合系数显著为正，说明规制融合对数字贸易具有显著促进作用
+            \item Kleibergen-Paap rk LM 统计量和 Kleibergen-Paap Wald rk F 统计量结果均拒绝了“工具变量识别不足”和“工具变量弱识别”的零假设，说明本文选取的工具变量是合理的
+            \item Hansen-Overid 检验结果无法拒绝原假设，说明工具变量设定有效
+        \end{itemize}
+    \end{tcolorbox}
+\end{frame}
+
 
 \subsection{机制检验}
 \begin{frame}{机制检验}
