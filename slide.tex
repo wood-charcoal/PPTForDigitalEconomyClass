@@ -845,14 +845,25 @@
 \begin{frame}{机制检验}
     \begin{itemize}
         \item 中介效应模型
-        \begin{tiny}
-        \begin{gather*}
-            M=\gamma_0+\gamma_1 Rule_{ijt}+\gamma Controls+v_i+v_j+v_k+v_t+\epsilon_{ijkt} \tag{14} \\
-            RDT_{ijkt}=\omega_0+\omega_1 Rule_{ijt}+\omega_2 M+\omega Controls+v_i+v_j+v_k+v_t+\epsilon_{ijkt} \tag{15}
-        \end{gather*}
-        \end{tiny}
+        \begin{footnotesize}
+            \begin{gather*}
+                M=\gamma_0+\gamma_1 Rule_{ijt}+\gamma Controls+v_i+v_j+v_k+v_t+\epsilon_{ijkt} \tag{14}
+            \end{gather*}
+        \end{footnotesize}
+        \vspace*{-2em}
+        \begin{scriptsize}
+            \begin{gather*}
+                RDT_{ijkt}=\omega_0+\omega_1 Rule_{ijt}+\omega_2 M+\omega Controls+v_i+v_j+v_k+v_t+\epsilon_{ijkt} \tag{15}
+            \end{gather*}
+        \end{scriptsize}
+        \vspace*{-1em}
         \begin{itemize}
             \item $M$ 为中介效应变量，分别代表贸易成本、双边网络效应和制度距离指标
+            \item 中介效应检测，两阶段
+            \begin{enumerate}
+                \item 基于(14)式运用规制融合对中介变量回归
+                \item 基于(15)式将规制融合和中介变量同时引入方程回归
+            \end{enumerate}
             \item $\gamma_1$ 与 $\omega_2$ 两系数之积为中介效应，并且 $M$ 作为有效中介变量需满足以下条件
             \begin{enumerate}
                 \item (12)式(基准模型)中的系数 $\beta_1$ 显著
@@ -867,44 +878,80 @@
     \begin{itemize}
         \item 简介测度法
         \begin{align*}
-            \tau_{ij}=(\frac{x_{ii}x_{jj}}{x_{ij}x_{ji}})^(\frac{1}{2(\sigma - 1)}-1 \tag{16}
+            \tau_{ij}=(\frac{x_{ii}x_{jj}}{x_{ij}x_{ji}})^\frac{1}{2(\sigma - 1)}-1 \tag{16}
         \end{align*}
         \begin{itemize}
             \item $\tau_{ij}$ 为 $i$ 和 $j$ 国之间的双边贸易成本
             \item $x_{ii}$ 和 $x_{jj}$ 分别表示 $i$ 和 $j$ 国的国内贸易值
             \item $x_{ij}$ 和 $x_{ji}$ 分别指 $i$ 国向 $j$ 国的出口值和 $j$ 国向 $i$ 国的出口值
-            \item $\sigma$ 为替代弹性
+            \item $x_{ii}, x_{jj}, x_{ij}, x_{ji}$ 数据来源：WIOD
+            \item $\sigma$ 为替代弹性，设定为8
         \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}{贸易成本的机制检验}
-    \vspace{-0.3cm}
-    \centering
-    \small
-    \begin{threeparttable}
-        \captionsetup{font=small}
-        \caption{机制检验: 基于贸易成本的中介效应模型}
-        \label{tab:mechanism_test}
-        \begin{tabular}{l@{\hspace{40pt}}c@{\hspace{40pt}}c}
-            \toprule
-            & 第一阶段 & 第二阶段 \\
-            & 贸易成本 & 数字贸易 \\
-            & (1) & (2) \\
-            \midrule
-            $Rule_{ijt}$ & -0.5632*** & 0.0009** \\
-            & (0.0270) & (0.0004) \\
-            中介变量 &  & -0.0013*** \\
-            & & (0.0003) \\
-            控制变量 & 控制 & 控制 \\
-            观测值 & 29,170 & 29,170 \\
-            $R^2$ & 0.1928 & 0.0422 \\
-            \bottomrule
-        \end{tabular}
-        \begin{tablenotes}
-            \item {\zhhei 说明}: 本文机制检验部分均使用 OLS 方法回归。  
-        \end{tablenotes}
-    \end{threeparttable}
+    \begin{columns}[T]
+        \begin{column}{0.8\textwidth}
+            \centering
+            \small
+            \begin{threeparttable}
+                \captionsetup{font=small}
+                \caption{机制检验: 基于贸易成本的中介效应模型}
+                \label{tab:mechanism_test}
+                \begin{tabular}{c@{\hspace{40pt}}c@{\hspace{40pt}}c}
+                    \toprule
+                    & 第一阶段 & 第二阶段 \\
+                    & 贸易成本 & 数字贸易 \\
+                    & (1) & (2) \\
+                    \midrule
+                    $Rule_{ijt}$ & -0.5632*** & 0.0009** \\
+                    & (0.0270) & (0.0004) \\
+                    中介变量 &  & -0.0013*** \\
+                    & & (0.0003) \\
+                    控制变量 & 控制 & 控制 \\
+                    观测值 & 29,170 & 29,170 \\
+                    $R^2$ & 0.1928 & 0.0422 \\
+                    \bottomrule
+                \end{tabular}
+                \begin{tablenotes}
+                    \item {\zhhei 说明}: 本文机制检验部分均使用 OLS 方法回归。  
+                \end{tablenotes}
+            \end{threeparttable}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \vspace*{1.5em}
+            \begin{tcolorbox}[colback=lightyellow,colframe=deepblue,coltext=black]
+                \begin{footnotesize}
+                    第一阶段规制融合和第二阶段贸易成本的系数均显著为负，表明规制融合通过降低贸易成本促进数字贸易的发展
+                \end{footnotesize}
+            \end{tcolorbox}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{双边网络效应的机制检验}
+    \begin{itemize}
+        \item 囿于数据可得性，无法获知精确的双边网络效用数据
+        \item 参考施炳展(2016)，运用双边双向网络链接作为替代变量进行中介效用分析，数据来源：Chung(2011)的数据库
+        \begin{footnotesize}
+            \zhhei
+            \item 由于本国和贸易伙伴国的互联网水平与双边网络效应可能存在多重共线性问题，第 (1) 和 (2) 列未添加这两个变量
+            \item 为检验回归结果的稳健性，第 (3) 和 (4) 列和基准回归保持一致引入互联网水平和双边网络效应变量
+        \end{footnotesize}
+    \end{itemize}
+    \begin{tcolorbox}[colback=lightyellow,colframe=deepblue,coltext=black]
+        \begin{itemize}
+            \item 回归结果 \\
+            \begin{scriptsize}
+                第一阶段规制融合和第二阶段双边网络效应的系数均显著为正，表明规制融合通过增强双边网络效应进而促进数字贸易的发展
+            \end{scriptsize}
+            \item 稳健性检验结果 \\
+            \begin{scriptsize}
+                核心变量的回归结果没有发生明显变化
+            \end{scriptsize}
+        \end{itemize}
+    \end{tcolorbox}
 \end{frame}
 
 \begin{frame}{双边网络效应的机制检验}
@@ -914,7 +961,7 @@
     \begin{threeparttable}
         \captionsetup{font=small}
         \caption{机制检验: 基于贸易成本的中介效应模型}
-        \begin{tabular}{lcccc}
+        \begin{tabular}{ccccc}
             \toprule
             & \makecell[c]{第一阶段 \\ 双边网络效应} & \makecell[c]{第二阶段 \\ 数字贸易} & \makecell[c]{第一阶段 \\ 双边网络效应} & \makecell[c]{第二阶段 \\ 数字贸易} \\
             & (1) & (2) & (3) & (4) \\
@@ -929,106 +976,137 @@
             \bottomrule
         \end{tabular}
         \begin{tablenotes}
-            \item {\zhhei 说明:} 由于部分样本国家双边双向网络链接数仅有2003和2009年的数据，因此样本观测值发生改变。
+            \item \textbf{说明:} 由于部分样本国家双边双向网络链接数仅有2003和2009年的数据，因此样本观测值发生改变。
         \end{tablenotes}
     \end{threeparttable}
 \end{frame}
 
-\begin{frame}{Frame Title}
-    \begin{itemize}
-        \item 政治领域制度特征
-        \begin{itemize}
-            \item 公民权利、政治和社会稳定、政府效率、社会监管质量、法律法规以及对腐败的控制 6 个指标
-            \item 数据源于世界银行全球治理数据库
-        \end{itemize}
-        \item 经济领域的制度特征
-        \begin{itemize}
-            \item 商业自由度指数、贸易自由度指数、财政自由度指数、政府支出指数、货币自由度指数、投资自由度指数、金融自由度指数以及知识产权保护度指数 8 个指标
-            \item 美国遗产基金会公布的经济自由度指数
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
 \begin{frame}{制度距离的机制检验}
     \begin{itemize}
+        \item 借鉴黄新飞等(2013)，运用14个指标构建了包含政治制度差异、经济制度差异以及制度实施特征差异在内的制度距离指标体系
         \item 运用政治制度和经济制度测算出双边制度距离
-            \begin{gather*}
-                DOR_{ijt}=\frac{1}{n} \sum_{y=1}^{n} [\frac{(I_{ity}-I_{jty})^2}{V_y}] \tag{17}
-            \end{gather*}
-            \begin{itemize}
-                \item $DOR_{ijt}$ 代表 $t$ 年本国 $i$ 与贸易伙伴国 $j$ 之间的制度距离
-                \item $I_{ity}$ 与 $I_{jty}$ 分别表示 $t$ 年 $i$ 与 $j$ 的第 $y$ 项指标和 $j$ 与 $i$ 的第 $y$ 项指标
-                \item $V_y$ 是 $y$ 项指标的方差
-                \item $n$ 表示指标的总数即 14
-            \end{itemize}
+        \begin{gather*}
+            DOR_{ijt}=\frac{1}{n} \sum_{y=1}^{n} [\frac{(I_{ity}-I_{jty})^2}{V_y}] \tag{17}
+        \end{gather*}
+        \begin{itemize}
+            \item $DOR_{ijt}$ 代表 $t$ 年本国 $i$ 与贸易伙伴国 $j$ 之间的制度距离
+            \item $I_{ity}$ 与 $I_{jty}$ 分别表示 $t$ 年 $i$ 与 $j$ 的第 $y$ 项指标和 $j$ 与 $i$ 的第 $y$ 项指标
+            \item $V_y$ 是 $y$ 项指标的方差
+            \item $n$ 表示指标的总数即 14
+        \end{itemize}
+        \item 政治领域制度特征，数据来源：世界银行全球治理数据库
+        \item 经济领域制度特征，数据来源：美国遗产基金会公布的经济自由度指数
     \end{itemize}
 \end{frame}
 
 \begin{frame}{制度距离的机制检验}
-    \centering
-    \begin{threeparttable}
-        \caption{机制检验: 基于制度距离的中介效应模型}
-        \begin{tabular}{lcc}
-            \toprule
-            & \makecell[c]{第一阶段 \\ 制度距离} & \makecell[c]{第二阶段 \\ 数字贸易} \\
-            & (1) & (2) \\
-            \midrule
-            $Rule_{ij}$ & -0.5389*** & 0.0026*** \\
-            & (0.0124) & (0.0003) \\
-            中介变量 & & -0.0001 \\
-            & & (0.0001) \\
-            控制变量 & 控制 & 控制 \\
-            观察值 & 33003 & 33003 \\
-            $R^2$ & 0.3570 & 0.0238 \\
-            \bottomrule
-        \end{tabular}
-    \end{threeparttable}
+    \begin{columns}[T]
+        \begin{column}{0.7\textwidth}
+            \centering
+            \begin{threeparttable}
+                \caption{机制检验: 基于制度距离的中介效应模型}
+                \begin{tabular}{ccc}
+                    \toprule
+                    & \makecell[c]{第一阶段 \\ 制度距离} & \makecell[c]{第二阶段 \\ 数字贸易} \\
+                    & (1) & (2) \\
+                    \midrule
+                    $Rule_{ij}$ & -0.5389*** & 0.0026*** \\
+                    & (0.0124) & (0.0003) \\
+                    中介变量 & & -0.0001 \\
+                    & & (0.0001) \\
+                    控制变量 & 控制 & 控制 \\
+                    观察值 & 33003 & 33003 \\
+                    $R^2$ & 0.3570 & 0.0238 \\
+                    \bottomrule
+                \end{tabular}
+            \end{threeparttable}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \begin{tcolorbox}[colback=lightyellow,colframe=deepblue,coltext=black]
+                第一阶段规制融合的系数显著为负，但第二阶段制度距离系数不显著，规制融合会通过降低制度距离促进数字贸易的发展
+            \end{tcolorbox}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \subsection{扩展分析}
 \begin{frame}{基于数字贸易行业的差异性分析}
-    \centering
-    \begin{threeparttable}
-        \caption{基于行业异质性的回归结果}
-        \begin{tabular}{lccc}
-            \toprule
-            & 行业1 & 行业2 & 行业3 \\
-            & (1) & (2) & (3) \\
-            \midrule
-            $Rule_{ijt}$ & $0.8852^{***}$ & $0.1372^{*}$ & $0.4876^{***}$ \\
-            & $(0.1033)$ & $(0.0756)$ & $(0.0526)$ \\
-            控制变量 & 控制 & 控制 & 控制 \\
-            观测值 & 11001 & 11001 & 11001 \\
-            $R^2$ & 0.0422 & 0.0318 & 0.0093 \\
-            \bottomrule
-        \end{tabular}
-        \begin{tablenotes}
-            \begin{footnotesize}
-                \item {\zhhei 说明：} 行业 1 指电影、视频和电视节目制作、录音和音乐出版活动以及节目编制和广播活动；行业 2 指计算机编程、咨询等相关活动与信息服务活动；行业 3 指电信业务。
-            \end{footnotesize}
-        \end{tablenotes}
-    \end{threeparttable}
+    \begin{columns}[T]
+        \begin{column}{0.7\textwidth}
+            \footnotesize
+            \centering
+            \begin{threeparttable}
+                \captionsetup{font=footnotesize}
+                \caption{基于行业异质性的回归结果}
+                \begin{tabular}{cccc}
+                    \toprule
+                    & 行业1 & 行业2 & 行业3 \\
+                    & (1) & (2) & (3) \\
+                    \midrule
+                    $Rule_{ijt}$ & $0.8852^{***}$ & $0.1372^{*}$ & $0.4876^{***}$ \\
+                    & $(0.1033)$ & $(0.0756)$ & $(0.0526)$ \\
+                    控制变量 & 控制 & 控制 & 控制 \\
+                    观测值 & 11001 & 11001 & 11001 \\
+                    $R^2$ & 0.0422 & 0.0318 & 0.0093 \\
+                    \bottomrule
+                \end{tabular}
+                \begin{tablenotes}
+                    \begin{footnotesize}
+                        \item {\zhhei 说明：} 行业 1 指电影、视频和电视节目制作、录音和音乐出版活动以及节目编制和广播活动；行业 2 指计算机编程、咨询等相关活动与信息服务活动；行业 3 指电信业务。
+                    \end{footnotesize}
+                \end{tablenotes}
+            \end{threeparttable}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \begin{tcolorbox}[colback=lightyellow,colframe=deepblue,coltext=black]
+                \footnotesize
+                规制融合对“电影、视频和电视节目制作，录音和音乐出版活动以及节目编制和广播活动”行业的数字贸易作用最大且最为显著; 其次是“电信业”; 最后是“计算机编程、咨询等相关活动与信息服务活动”行业
+            \end{tcolorbox}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}{基于美式模板与欧式模板的差异性分析}
-    \centering
-    \resizebox{\textwidth}{!}{
-        \begin{threeparttable}
-            \caption{基于模板异质性的回归结果}
-            \begin{tabular}{@{}lcccccc@{}}
-                \toprule
-                & \multicolumn{3}{c}{美式模板相似度} & \multicolumn{3}{c}{欧式模板相似度} \\
-                & (1) & (2) & (3) & (4) & (5) & (6) \\
-                \midrule
-                模板相似度 & $-1.3670^{***}$ & $-2.6701^{***}$ & $-3.2247^{***}$ & $0.7084^{***}$ & $1.3509^{***}$ & $1.6201^{***}$ \\
-                & $(0.2838)$ & $(0.2988)$ & $(0.3083)$ & $(0.1353)$ & $(0.1394)$ & $(0.1458)$ \\
-                控制变量 & 控制 & 控制 & 控制 & 控制 & 控制 & 控制 \\
-                观测值 & 16254 & 16254 & 15069 & 16254 & 16254 & 15069 \\
-                R$^2$ & 0.0177 & 0.0226 & 0.0250 & 0.0114 & 0.0169 & 0.0171 \\
-                \bottomrule
-            \end{tabular}
-        \end{threeparttable}
-    }
+    \begin{itemize}
+        \item 借鉴韩剑等(2019)，计算文本余弦相似度以对数字贸易条款的异质性进行测算
+        \item 数字贸易美式模板相似度指标($SimUS_{ijt}$) \\
+        \begin{scriptsize}
+            所有生效的RTA涉及电子商务章节的条款与TPP（由美国主导的高标准贸易投资规则）进行对比
+        \end{scriptsize}
+        \item 数字贸易欧式模板相似度指标($SimEU_{ijt}$) \\
+        \begin{scriptsize}
+            所有生效的RTA涉及电子商务章节的条款与欧洲经济区协议进行对比
+        \end{scriptsize}
+        \item 数据来源：WTO 的 RTA 数据库中协议文本内容
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{基于美式模板与欧式模板的差异性分析}
+    \vspace*{-2em}
+    \begin{center}
+        \resizebox{\textwidth}{!}{
+            \begin{threeparttable}
+                \caption{基于模板异质性的回归结果}
+                \begin{tabular}{@{}ccccccc@{}}
+                    \toprule
+                    & \multicolumn{3}{c}{美式模板相似度} & \multicolumn{3}{c}{欧式模板相似度} \\
+                    & (1) & (2) & (3) & (4) & (5) & (6) \\
+                    \midrule
+                    模板相似度 & $-1.3670^{***}$ & $-2.6701^{***}$ & $-3.2247^{***}$ & $0.7084^{***}$ & $1.3509^{***}$ & $1.6201^{***}$ \\
+                    & $(0.2838)$ & $(0.2988)$ & $(0.3083)$ & $(0.1353)$ & $(0.1394)$ & $(0.1458)$ \\
+                    控制变量 & 控制 & 控制 & 控制 & 控制 & 控制 & 控制 \\
+                    观测值 & 16254 & 16254 & 15069 & 16254 & 16254 & 15069 \\
+                    R$^2$ & 0.0177 & 0.0226 & 0.0250 & 0.0114 & 0.0169 & 0.0171 \\
+                    \bottomrule
+                \end{tabular}
+            \end{threeparttable}
+        }
+    \end{center}
+    \vspace*{1em}
+    \begin{tcolorbox}[colback=lightyellow,colframe=deepblue,coltext=black]
+        \small
+        尽管美式模板的标准更高，但相较于欧式模板，美式模板并没有表现出对数字贸易更强的促进作用
+    \end{tcolorbox}
 \end{frame}
 
 
